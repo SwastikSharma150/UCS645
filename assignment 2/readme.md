@@ -28,12 +28,16 @@ each representing a different class of computation.
 The main objectives of this assignment are:
 
 • Measure execution time using omp_get_wtime(). 
+
 • Compute speedup, efficiency, and cost metrics. 
+
 • Understand strong vs weak scaling using Amdahl’s and Gustafson’s 
 laws. 
+
 • Identify performance bottlenecks such as load imbalance, 
 synchronization overhead, false sharing, and memory bandwidth 
 saturation. 
+
 • Gain introductory exposure to performance profiling tools.
 
 ---
@@ -41,9 +45,13 @@ saturation.
 ## 3. Experimental Environment
 
 • Operating System: Windows
+
 • Compiler: GCC (MinGW-w64)
+
 • Parallel Model: OpenMP (shared memory)
+
 • Thread Counts Tested: 1, 2, 4, 8
+
 • Compiler Flag: -fopenmp
 
 All programs were compiled and executed from the terminal using
@@ -65,9 +73,13 @@ potential for a simple molecular dynamics system. Each particle interacts
 with all other particles, resulting in a quadratic computational cost.
 
 **Parallelization details:**
+
 • The outer interaction loop is parallelized using OpenMP
+
 • Thread-local force arrays are used to avoid race conditions
+
 • Total potential energy is accumulated using a reduction
+
 • Guided scheduling is applied to reduce load imbalance
 
 ---
@@ -80,7 +92,9 @@ programming approach. Due to data dependencies in the scoring matrix,
 direct row-wise parallelization is not possible.
 
 **Parallelization details:**
+
 • The scoring matrix is computed using wavefront (anti-diagonal) traversal
+
 • Cells on the same diagonal are computed in parallel
 • Data dependencies between diagonals are preserved implicitly
 • Static scheduling is used for diagonal-level parallelism
@@ -95,9 +109,13 @@ difference method. The temperature at each grid point depends only on the
 previous time step.
 
 **Parallelization details:**
+
 • Spatial grid updates are parallelized using OpenMP
+
 • Time-stepping remains sequential due to data dependencies
+
 • Each thread updates independent grid cells, avoiding race conditions
+
 • Reduction is used to compute total heat for analysis
 
 ---
