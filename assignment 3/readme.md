@@ -53,18 +53,35 @@ Three versions are implemented:
 | 4 | 0.248 | 1.94× | 48% |
 | 8 | 0.156 | 3.07× | 38% |
 
-## Speedup Analysis
+# Speedup Analysis
 
-Speedup = T(1) / T(n)
+Matrix Size Tested: **1000 × 1000**
 
-| Threads | Speedup |
-|----------|----------|
-| 2 | 1.27× |
-| 8 | 3.07× |
+Speedup is calculated as:
 
-## Observations
+Speedup(p) = T(1) / T(p)
 
-- Parallel execution significantly reduces execution time.
-- Speedup increases with number of threads.
-- Efficiency decreases at higher thread counts due to parallel overhead and memory bandwidth limitations.
-- Larger matrices show better scaling efficiency.
+where:
+- T(1) = execution time with 1 thread
+- T(p) = execution time with p threads
+
+Baseline time (1 thread): **0.480 sec**
+
+| Threads | Time (sec) | Speedup | Efficiency |
+|----------|------------|----------|-------------|
+| 1 | 0.480 | 1.00× | 100% |
+| 2 | 0.378 | 1.27× | 63% |
+| 4 | 0.248 | 1.94× | 48% |
+| 8 | 0.156 | 3.07× | 38% |
+
+---
+
+## 🔍 Observations
+
+- Speedup increases as the number of threads increases.
+- Maximum observed speedup is **3.07×** with 8 threads.
+- Efficiency decreases at higher thread counts due to:
+  - Memory bandwidth limitations
+  - Thread scheduling overhead
+  - Cache contention
+- The workload (1000 × 1000) is moderately sized, so parallel overhead has noticeable impact.
