@@ -26,9 +26,9 @@ This assignment explores advanced CUDA concepts by implementing:
 Compile and run using:
 
 ```bash id="r1x2a9"
-nvcc problem1_thread_tasks.cu -o run1 && ./run1
-nvcc problem2_merge_sort.cu   -o run2 && ./run2
-nvcc -O3 problem3_vector_add.cu -o run3 && ./run3
+nvcc problem1.cu -o run1 && ./run1
+nvcc problem2.cu   -o run2 && ./run2
+nvcc -O3 problem3.cu -o run3 && ./run3
 ```
 
 ---
